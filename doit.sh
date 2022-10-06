@@ -19,10 +19,18 @@ elif [[ $ret_code -eq 4 ]]; then
 fi
 $UNZIP_CMD icons.zip
 
-mkdir svg
+#mkdir .outputs
+#mkdir svg
 
-find -name '*.svg' -exec cp {} svg/ \;
-find -name '* *' -print0 | xargs -0 rm
+#find -name '*.svg' -exec cp {} svg/ \;
+#find -name '* *' -print0 | xargs -0 rm -rf
+
+rm -rf __MACOSX
+
+cp AWS_Simple_Icons_EPS-SVG_v17.1.19/*/*.png ./.outputs/shapes/
+cp AWS_Simple_Icons_EPS-SVG_v17.1.19/*/*/*.png ./.outputs/shapes/
+
+
 
 make
 
@@ -33,6 +41,7 @@ echo
 echo "Yesterday you said tomorrow..."
 echo "Break here (ctrl-c) to do it manually or press enter to JUST DO IT!"
 read
+
 
 cp -v .outputs/shapes.sheet ~/.dia/sheets/AWS.sheet
 cp -v .outputs/shapes/* ~/.dia/shapes/
